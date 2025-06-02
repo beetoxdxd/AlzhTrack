@@ -8,12 +8,9 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-[#e0f7fa] to-[#b2ebf2]">
-      {/* Header */}
       <header className="bg-gradient-to-r from-[#3f535e] to-[#06354f] py-4 shadow-md">
         <nav className="max-w-4xl mx-auto flex justify-between items-center px-6 md:px-8">
-          {/* Logo */}
           <div className="text-white font-bold text-2xl">AlzhTrack</div>
-          {/* Menú hamburguesa (móvil) */}
           <div className="relative md:hidden">
             <button onClick={toggleMenu} className="text-white focus:outline-none">
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -31,7 +28,6 @@ export default function Home() {
               </div>
             )}
           </div>
-          {/* Menú escritorio */}
           <div className="hidden md:flex space-x-6">
             <button onClick={() => navigate("/infoExtra/acerca")} className="text-white font-medium hover:underline">
               Acerca de
@@ -43,23 +39,19 @@ export default function Home() {
         </nav>
       </header>
 
-      {/* Contenido principal */}
       <main className="flex flex-col items-center justify-center flex-1 px-6 py-8 md:px-8">
-        {/* Logo */}
         <div className="mb-6 animate-zoom-in">
           <img src={require("./logo.png")} alt="Logo AlzhTrack" className="w-32 h-32 mx-auto" />
         </div>
-        {/* Título y descripción */}
         <h1 className="text-3xl md:text-5xl font-extrabold text-gray-800 text-center mb-4 animate-fade-in">
           AlzhTrack
         </h1>
         <p className="text-center text-gray-600 text-base md:text-xl mb-8 max-w-md animate-fade-in delay-200">
           Uniendo tecnología y cuidado para brindar monitoreo remoto y tranquilidad.
         </p>
-        {/* Botón único */}
         <div className="animate-bounce-in">
           <button
-            onClick={() => navigate("/xd")}
+            onClick={() => navigate("/auth")}
             className="bg-[#9BDCFD] hover:bg-[#00DDDD] text-black font-bold py-3 px-8 rounded-full shadow-lg transition-transform transform hover:-translate-y-1 hover:scale-105"
           >
             Accede a la plataforma
@@ -67,7 +59,6 @@ export default function Home() {
         </div>
       </main>
 
-      {/* Animaciones personalizadas */}
       <style>
         {`
           @keyframes zoom-in {

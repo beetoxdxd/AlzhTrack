@@ -4,5 +4,5 @@ import { AuthContext } from './AuthContext';
 
 export default function ProtectedRoute({ children }) {
   const { user } = useContext(AuthContext);
-  return user ? children : <Navigate to="/cuidadores/login" />;
+  return user ? children : <Navigate to="/auth" />;
 }
