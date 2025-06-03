@@ -200,6 +200,15 @@ export default function DoubleSliderForm() {
     }
   };
 
+  const passwordCriteria = {
+    lowercase: /[a-z]/.test(registerForm.password),
+    uppercase: /[A-Z]/.test(registerForm.password),
+    number: /[0-9]/.test(registerForm.password),
+    special: /[!@#$%^&*(),.?":{}|<>]/.test(registerForm.password),
+    minLength: registerForm.password.length >= 8,
+  };
+  const passwordValid = Object.values(passwordCriteria).every(value => value);
+
   return (
     <>
       <div style={{ position: "fixed", top: "20px", left: "20px", zIndex: 1100 }}>
@@ -393,6 +402,26 @@ export default function DoubleSliderForm() {
                     <p className="text-xs text-red-500 mt-1">Las contraseñas no coinciden.</p>
                   )}
                 </div>
+                <div className="space-y-1">
+                  <p className="text-sm font-medium text-gray-700">Requisitos de la contraseña:</p>
+                  <ul className="text-xs ml-4">
+                    <li className={passwordCriteria.lowercase ? "text-green-500" : "text-red-500"}>
+                      {passwordCriteria.lowercase ? "✔" : "✖"} Una letra minúscula
+                    </li>
+                    <li className={passwordCriteria.uppercase ? "text-green-500" : "text-red-500"}>
+                      {passwordCriteria.uppercase ? "✔" : "✖"} Una letra mayúscula
+                    </li>
+                    <li className={passwordCriteria.number ? "text-green-500" : "text-red-500"}>
+                      {passwordCriteria.number ? "✔" : "✖"} Un número
+                    </li>
+                    <li className={passwordCriteria.special ? "text-green-500" : "text-red-500"}>
+                      {passwordCriteria.special ? "✔" : "✖"} Un carácter especial
+                    </li>
+                    <li className={passwordCriteria.minLength ? "text-green-500" : "text-red-500"}>
+                      {passwordCriteria.minLength ? "✔" : "✖"} Mínimo 8 caracteres
+                    </li>
+                  </ul>
+                </div>
                 <div className="flex gap-2">
                   <button
                     type="button"
@@ -403,8 +432,8 @@ export default function DoubleSliderForm() {
                   </button>
                   <button
                     type="submit"
-                    className="w-1/2 mx-auto bg-[#9BDCFD] hover:bg-[#3f535e] text-gray-800 hover:text-[#e0f7fa] font-bold py-3 px-4 rounded-lg shadow-md transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-[#00DDDD]/40 flex items-center justify-center"
-                    disabled={registerLoading}
+                    className="w-1/2 mx-auto bg-[#9BDCFD] hover:bg-[#3f535e] text-gray-800 font-bold py-3 px-4 rounded-lg shadow-md transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-[#00DDDD]/40 flex items-center justify-center"
+                    disabled={!passwordValid || registerLoading}
                   >
                     {registerLoading ? (
                       <span className="flex items-center">
